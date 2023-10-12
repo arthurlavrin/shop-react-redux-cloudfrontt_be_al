@@ -1,6 +1,6 @@
-import {lunarTerritoryProductsListData} from "@functions/getProductsById/mock";
 import {getProductsById} from "@functions/getProductsById/handler";
 import {APIGatewayProxyEvent} from "aws-lambda";
+import {lunarTerritoryProductsListData} from "@functions/getProductsList/mock";
 
 jest.mock('../../../libs/lambda');
 

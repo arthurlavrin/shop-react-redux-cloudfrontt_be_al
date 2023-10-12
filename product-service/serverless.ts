@@ -11,6 +11,9 @@ const serverlessConfiguration: AWS = {
     region: 'eu-west-1',
     stage: 'dev',
     runtime: 'nodejs14.x',
+    httpApi: {
+      cors: true,
+    },
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,

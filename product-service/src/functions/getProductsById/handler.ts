@@ -1,8 +1,8 @@
 import { middyfy } from '@libs/lambda';
-import { lunarTerritoryProductsListData } from './mock'
 import {formatJSONResponse} from "@libs/api-gateway";
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import {ErrorMessages, StatusCodeEnums} from "../../constants";
+import {lunarTerritoryProductsListData} from "@functions/getProductsList/mock";
 
 export const getProductsById = async (event: APIGatewayProxyEvent) => {
   const lunarTerritoryProduct = lunarTerritoryProductsListData.find(

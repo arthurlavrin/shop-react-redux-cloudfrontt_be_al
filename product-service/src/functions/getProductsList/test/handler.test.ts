@@ -1,5 +1,5 @@
 import {getProductsList} from "../handler";
-import {lunarTerritoryMockData} from "../mock";
+import {lunarTerritoryProductsListData} from "@functions/getProductsList/mock";
 
 jest.mock('../../../libs/lambda');
 
@@ -8,7 +8,7 @@ describe('getProductsList', () => {
     const response = await getProductsList();
 
     expect(response).toEqual({
-      body: JSON.stringify(lunarTerritoryMockData),
+      body: JSON.stringify(lunarTerritoryProductsListData),
       statusCode: 200,
     });
   });

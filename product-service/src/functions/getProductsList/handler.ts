@@ -1,11 +1,11 @@
 import { middyfy } from '@libs/lambda';
-import { lunarTerritoryMockData } from './mock'
+import {lunarTerritoryProductsListData} from './mock'
 import {formatJSONResponse} from "@libs/api-gateway";
 import {ErrorMessages, StatusCodeEnums} from "../../constants";
 
 export const getProductsList = async () => {
-  if (lunarTerritoryMockData.length) {
-    return formatJSONResponse(lunarTerritoryMockData, StatusCodeEnums.SUCCESS)
+  if (lunarTerritoryProductsListData.length) {
+    return formatJSONResponse(lunarTerritoryProductsListData, StatusCodeEnums.SUCCESS)
   }
 
   return formatJSONResponse({ error: ErrorMessages.PRODUCTS_NOT_FOUND }, StatusCodeEnums.NOT_FOUND)
