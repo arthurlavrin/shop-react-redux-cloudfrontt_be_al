@@ -7,6 +7,7 @@ import {
 import { S3Event } from "aws-lambda";
 import csvParser from "csv-parser";
 
+// async
 const getCopyCommand = (key: string) =>
   new CopyObjectCommand({
     Bucket: "uploaded-artlav",
