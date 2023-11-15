@@ -1,0 +1,16 @@
+{
+  "name": "dynamodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "create-products.js",
+  "scripts": {
+    "start": "node create-products.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.433.0",
+    "@aws-sdk/util-dynamodb": "^3.433.0",
+    "aws-sdk": "^2.1478.0"
+  }
+}

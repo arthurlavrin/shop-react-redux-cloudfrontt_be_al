@@ -1,0 +1,25 @@
+{
+  "name": "shop-nodejs-aws-cloudfront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "cd product-service && npm i",
+    "deploy:product-service": "cd product-service && serverless deploy",
+    "remove:product-service": "cd product-service && serverless remove"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurlavrin/shop-react-redux-cloudfrontt_be_al.git"
+  },
+  "author": "Artur Lavrin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arthurlavrin/shop-react-redux-cloudfrontt_be_al/issues"
+  },
+  "homepage": "https://github.com/arthurlavrin/shop-react-redux-cloudfrontt_be_al#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1478.0",
+    "serverless": "^3.35.2"
+  }
+}
