@@ -30,6 +30,11 @@ const serverlessConfiguration: AWS = {
             Action: ["s3:*"],
             Resource: ["arn:aws:s3:::uploaded-artlav/*"],
           },
+          {
+            Effect: "Allow",
+            Action: "sqs:*",
+            Resource: "arn:aws:sqs:eu-west-1:003178017432:catalogItemsQueue",
+          },
         ],
       },
     },
