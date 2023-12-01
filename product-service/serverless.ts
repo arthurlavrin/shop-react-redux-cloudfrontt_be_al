@@ -1,6 +1,23 @@
 import type { AWS } from '@serverless/typescript';
 
-import { getProducts, getProductsById, createProduct } from 'src/functions';
+import { getProducts, getProductsById, createProduct, catalogBatchProcess } from 'src/functions';
+
+const iamRoleStatements = [
+  {
+    Effect: 'Allow',
+    Action: 'sqs:*',
+    Resource: {
+      'Fn::GetAtt': ['catalogItemsQueue', 'Arn'],
+    },
+  },
+  {
+    Effect: 'Allow',
+    Action: 'sns:*',
+    Resource: {
+      Ref: 'SNSTopic',
+    },
+  },
+];
 
 const serverlessConfiguration: AWS = {
   service: 'product-service',
@@ -16,7 +33,8 @@ const serverlessConfiguration: AWS = {
     },
     iam: {
       role: {
-        managedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess']
+        managedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
+        statements: iamRoleStatements
       },
     },
     apiGateway: {
@@ -30,7 +48,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { getProducts, getProductsById, createProduct },
+  functions: { getProducts, getProductsById, createProduct, catalogBatchProcess },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -88,7 +106,29 @@ const serverlessConfiguration: AWS = {
             WriteCapacityUnits: 5
           }
         }
-      }
+      },
+      catalogItemsQueue: {
+        Type: "AWS::SQS::Queue",
+        Properties: {
+          QueueName: "catalogItemsQueue"
+        }
+      },
+      SNSTopic: {
+        Type: "AWS::SNS::Topic",
+        Properties: {
+          TopicName: "createProductTopic"
+        }
+      },
+      SNSSubscriptionNotPremium: {
+        Type: "AWS::SNS::Subscription",
+        Properties: {
+          Endpoint: "artur.lavrin.wsg@gmail.com",
+          Protocol: "email",
+          TopicArn: {
+            Ref: "SNSTopic"
+          },
+        }
+      },
     }
   }
 };
